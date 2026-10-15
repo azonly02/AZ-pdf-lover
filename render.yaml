@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: az-pdf-lover
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: MAX_REQUEST_MB
+        value: "220"
+      - key: MAX_FILE_MB
+        value: "100"

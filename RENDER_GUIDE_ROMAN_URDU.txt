@@ -1,0 +1,18 @@
+AZ PDF LOVER — Render par deploy karne ka tareeqa
+
+1) az_pdf_lover_render_bundle.zip download karke extract karein.
+2) Extracted tamam files GitHub par ek nayi repository mein upload karein. Folder structure same rakhein: app.py, Dockerfile, render.yaml, requirements.txt aur static/index.html repository ke root ke andar hon.
+3) Render.com par login karein.
+4) Dashboard se New + > Blueprint select karein. Apni GitHub repository connect karein. Render render.yaml parh kar web service banayega. Agar Blueprint option use nahi karna, to New + > Web Service mein repository connect karke Runtime Docker select karein.
+5) Deploy start karein. Pehli build ko kuch minutes lag sakte hain kyun ke LibreOffice, Ghostscript, Tesseract OCR aur Python libraries install hoti hain.
+6) Deploy complete hone ke baad apne service URL ke end par /health lagayein, misal: https://YOUR-SERVICE.onrender.com/health . Agar status ok aaye to backend chal raha hai.
+7) Root URL khol kar pehle choti, non-private sample PDF se test karein.
+
+Zaroori baatein:
+- Yeh backend version files ko server par upload karta hai; purane browser-only privacy claims ko use na karein.
+- App har request ke baad temporary files delete karti hai, lekin production ke liye privacy policy, rate limiting, abuse protection aur authentication par ghour karein.
+- Default limit 100 MB per file aur 220 MB total request hai. Render plan ki RAM/CPU ke mutabiq bari files fail ho sakti hain.
+- PDF unlock sirf sahi password ke sath aur un documents ke liye hai jin ko access karne ki ijazat ho. Unknown password bypass nahi hota.
+- PDF to Word/Excel text extract karta hai; har original formatting ya table 100% preserve hone ki guarantee nahi.
+- Docker deployment mein PowerPoint-to-PDF, Word-to-PDF, Excel-to-PDF aur OCR ke required engines shamil hain.
+- Render plan ke mutabiq charges ho sakte hain. Deploy karne se pehle pricing aur plan check kar lein.
